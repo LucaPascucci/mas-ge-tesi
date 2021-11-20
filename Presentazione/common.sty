@@ -1,0 +1,339 @@
+%******************************************************************************%
+% Packages
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bbm}
+%\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tikz}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{shapes.multipart}
+%\usepackage[pdftex]{graphicx}
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{gensymb}
+\usepackage[active]{srcltx}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{url}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shapes}
+%\usepackage{pzccal}
+%\lstset{
+%	language=Java,
+%	basicstyle=\ttfamily,
+%	numbers=left,
+%	tabsize=2,
+%	numbersep=5pt,
+%	commentstyle=\color{blue},
+%	keywordstyle=\color{red},
+%	%alsoletter={?, <-, ->, @},
+%	%deletekeywords={is},
+%	%morekeywords={start\_source, start\_target, event\_time, event\_node, link\_in, event\_source, current\_node}
+%}
+
+\usepackage[active]{srcltx}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+
+\newcommand{\hint}[1]{\hfill{\scriptsize \alert{!} {\color{gray}#1}}}
+\newcommand{\fnhint}[1]{{\footnote{\scriptsize{\color{gray}#1}}}}
+
+\definecolor{myred}{RGB}{153,0,0}
+\tikzset{
+    myarrow/.style={
+        draw,
+        fill=wildblueyonder,
+        single arrow,
+        minimum height=3.5ex,
+        single arrow head extend=1ex
+    }
+}
+\newcommand{\arrowup}{%
+\tikz [baseline=-0.5ex]{\node [myarrow,rotate=90] {};}
+}
+\newcommand{\arrowdown}{%
+\tikz [baseline=-1ex]{\node [myarrow,rotate=-90] {};}
+}
+\newcommand{\arrowleft}{%
+\tikz [baseline=-1ex]{\node [myarrow,rotate=0] {};}
+}
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{orangeRGB}{RGB}{255,128,0}
+\definecolor{violetRGB}{RGB}{128, 0, 128}
+\definecolor{fuchsiaRGB}{RGB}{255, 0, 255}
+\definecolor{wildblueyonder}{rgb}{0.64, 0.68, 0.82}
+\definecolor{wheat}{rgb}{1.000000,0.980392,0.941176}
+
+\definecolor{RGBex0}{RGB}{255,239,213}
+\definecolor{RGBex1}{RGB}{255,240,245}
+\definecolor{RGBex2}{RGB}{255,222,173}
+\definecolor{RGBex3}{RGB}{119,136,153}
+\definecolor{RGBex4}{RGB}{188,143,143}
+\definecolor{RGBex5}{RGB}{255,245,238}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+
+\lstloadlanguages{Java}
+
+\definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}
+\definecolor{camouflagegreen}{rgb}{0.47, 0.53, 0.42}
+
+\lstset{language=Java,
+	basicstyle=\scriptsize\ttfamily,
+%	numbers=left,
+	tabsize=2,
+	sensitive=true,
+	showspaces=false, showtabs=false, showstringspaces=false,
+%	numbersep=5pt,
+	commentstyle=\color{SkyBlue},
+%	keywordstyle=\color{RoyalBlue}
+}
+
+\let\next\relax
+
+% Labelled vars
+\newcommand{\lpaas}{{LPaaS}}
+\newcommand{\iot}{{I}o{T}}
+\newcommand{\true}{\mathsf{true}}
+\newcommand{\false}{\mathsf{false}}
+\newcommand{\labelass}[2]{\langle{#1},{#2}\rangle}
+\newcommand{\ar}[1]{\mathit{ar}({#1})}
+\newcommand{\lab}{\Lambda}
+\newcommand{\lb}{\widetilde\ell}
+\newcommand{\LVLP}{\mbox{\sf LVLP}}
+
+% Author Data
+\newcommand{\xauthC}{Andrea Omicini}
+\newcommand{\xauthCsh}{A. Omicini}
+\newcommand{\xauthCidx}{Omicini, Andrea}
+\newcommand{\xinstCE}{DISI, \textsc{Alma Mater Studiorum}--Universit\`{a} di Bologna}
+\newcommand{\xaddrCE}{viale Risorgimento 2}
+\newcommand{\xcityCE}{40126 Bologna, Italy}
+%
+\newcommand{\xkeywords}{Multi-Agent Coordination, Coordination Artifacts, Space-Aware Coordination}
+% Proper Names
+\newcommand{\moklong}{$\mathpzc{M}$olecules $\mathpzc{o}$f $\mathpzc{K}$nowledge}
+\newcommand{\mok}{$\mathpzc{MoK}$}
+\newcommand{\mokf}{$\mathcal{F}_{\mathcal{M}o\mathcal{K}}$}
+\newcommand{\moknews}{\mok{}{\tt -News}}
+\newcommand{\biopepa}{{Bio-PEPA}}
+\newcommand{\pepa}{{PEPA}}
+\newcommand{\tforj}{\tucson{}$4$\jade{}}
+\newcommand{\hrespect}{{\Large \sf {R}e{S}pec{T}}}
+\newcommand{\lrespect}{{\large \sf {R}e{S}pec{T}}}
+\newcommand{\respect}{{\sf {R}e{S}pec{T}}}
+\newcommand{\cartago}{{\sf {CA}rt{A}g{O}}}
+\newcommand{\haea}{{\Large\sc A\&A}}
+\newcommand{\mars}{MARS}
+\newcommand{\aea}{A\&A}
+\newcommand{\aealong}{Agent \& Artefact}
+\newcommand{\tucson}{{\sf {T}u{CS}o{N}}}
+\newcommand{\linda}{{\sc {L}inda}}
+\newcommand{\tuprolog}{{{\sf tu}{P}rolog}}
+\newcommand{\jade}{{\sc Jade}}
+\newcommand{\jason}{{Jason}}
+\newcommand{\jadelong}{{\sc J}ava {\sc A}gent {\sc DE}velopment Framework}
+\newcommand{\fipa}{FIPA}
+\newcommand{\acl}{ACL}
+\newcommand{\acllong}{$\mathcal{A}$gent $\mathcal{C}$ommunication $\mathcal{L}$anguage}
+%\newcommand{\lout}{{\tt out}}
+%\newcommand{\lin}{{\tt in}}
+%\newcommand{\lrd}{{\tt rd}}
+% Cross-referencing
+\newcommand{\labelsec}[1]{\label{sec:#1}}
+\newcommand{\xs}[1]{\sectionname~\ref{sec:#1}}
+\newcommand{\xsp}[1]{\sectionname~\ref{sec:#1} \onpagename~\pageref{sec:#1}}
+\newcommand{\labelssec}[1]{\label{ssec:#1}}
+\newcommand{\xss}[1]{\subsectionname~\ref{ssec:#1}}
+\newcommand{\xssp}[1]{\subsectionname~\ref{ssec:#1} \onpagename~\pageref{ssec:#1}}
+\newcommand{\labelsssec}[1]{\label{sssec:#1}}
+\newcommand{\xsss}[1]{\subsectionname~\ref{sssec:#1}}
+\newcommand{\xsssp}[1]{\subsectionname~\ref{sssec:#1} \onpagename~\pageref{sssec:#1}}
+\newcommand{\labelfig}[1]{\label{fig:#1}}
+\newcommand{\xf}[1]{\figurename~\ref{fig:#1}}
+\newcommand{\xfp}[1]{\figurename~\ref{fig:#1} \onpagename~\pageref{fig:#1}}
+\newcommand{\labeltab}[1]{\label{tab:#1}}
+\newcommand{\xt}[1]{\tablename~\ref{tab:#1}}
+\newcommand{\xtp}[1]{\tablename~\ref{tab:#1} \onpagename~\pageref{tab:#1}}
+% Category Names
+%\newcommand{\tablename}{Table}
+%\newcommand{\figurename}{Table}
+\renewcommand{\sectionname}{Section}
+\renewcommand{\subsectionname}{Subsection}
+\newcommand{\sectionsname}{Sections}
+\newcommand{\subsectionsname}{Subsections}
+\renewcommand{\secname}{\sectionname}
+\newcommand{\ssecname}{\subsectionname}
+\newcommand{\secsname}{\sectionsname}
+\newcommand{\ssecsname}{\subsectionsname}
+\newcommand{\onpagename}{on page}
+%\newcommand{\chaptername}{Chapter}
+% Linda primitives
+\newcommand{\lin}{\texttt{in}}
+\newcommand{\linp}{\texttt{inp}}
+\newcommand{\lout}{\texttt{out}}
+\newcommand{\lrd}{\texttt{rd}}
+\newcommand{\lrdp}{\texttt{rdp}}
+\newcommand{\lno}{\texttt{no}}
+% Bulk primitives
+\newcommand{\linall}{\texttt{in\_all}}
+\newcommand{\linpall}{\texttt{inp\_all}}
+\newcommand{\loutall}{\texttt{out\_all}}
+\newcommand{\lrdall}{\texttt{rd\_all}}
+\newcommand{\lrdpall}{\texttt{rdp\_all}}
+\newcommand{\lnoall}{\texttt{no\_all}}
+% Uniform primitives
+\newcommand{\uin}{\texttt{uin}}
+\newcommand{\urd}{\texttt{urd}}
+\newcommand{\uno}{\texttt{uno}}
+\newcommand{\uinp}{\texttt{uinp}}
+\newcommand{\urdp}{\texttt{urdp}}
+\newcommand{\unop}{\texttt{unop}}
+\newcommand{\uout}{\texttt{uout}}
+% Uniform bulk primitives
+\newcommand{\uinall}{\texttt{uin\_all}}
+\newcommand{\urdall}{\texttt{urd\_all}}
+\newcommand{\unoall}{\texttt{uno\_all}}
+% Uniform primitives for subsection titles
+\newcommand{\Uin}{\texttt{\large{uin}}}
+\newcommand{\Urd}{\texttt{\large{urd}}}
+\newcommand{\Uno}{\texttt{\large{uno}}}
+\newcommand{\Uout}{\texttt{\large{uout}}}
+% Logical Operators
+\newcommand{\opand}{{\sc and}}
+\newcommand{\opor}{{\sc or}}
+\newcommand{\opxor}{{\sc xor}}
+\newcommand{\opnot}{{\sc not}}
+\newcommand{\opnor}{{\sc nor}}
+\newcommand{\opnand}{{\sc nand}}
+%
+\newcommand{\sopand}{\mbox{{\sc and}}}
+\newcommand{\sopor}{\mbox{{\sc or}}}
+\newcommand{\sopxor}{\mbox{{\sc xor}}}
+\newcommand{\sopnot}{\mbox{{\sc not}}}
+\newcommand{\sopnor}{\mbox{{\sc nor}}}
+\newcommand{\sopnand}{\mbox{{\sc nand}}}
+% Formal
+\newcommand{\ttt}[1]{\small\texttt{#1}\normalsize}
+\newcommand{\tit}[1]{\textit{#1}}
+\newcommand{\ttit}[1]{\texttt{\textit{#1}}}
+\newcommand{\bnfs} {|}
+\newcommand{\comp} {;\!\!}
+\newcommand{\mopor} {\textsc{OR}}
+\newcommand{\mopand} {\textsc{AND}}
+\newcommand{\mopxor} {\textsc{XOR}}
+\newcommand{\neweq}[1]  {\equiv_{#1}}
+\newcommand{\handles} {m}
+\newcommand{\Cont}[2]   {(#1)#2}
+\newcommand{\cont}[2]   {(#1)#2}
+\newcommand{\cset}[1]    {\overline{#1}}
+\newcommand{\void}      {\epsilon}
+\newcommand{\ALL}      {\mathit{ALL}}
+\newcommand{\tuple}[1] {\langle #1 \rangle}
+% Syntax
+% Code
+\newcommand{\liness}{\\[-1mm]}
+\newcommand{\cterm}[1]{\texttt{\small{#1}\normalsize}}
+\newcommand{\cterms}[1]{\texttt{\footnotesize{#1}\normalsize}}
+\newcommand{\ctermss}[1]{\texttt{\scriptsize{#1}\normalsize}}
+\newcommand{\cvar}[1]{\cterm{\textit{#1}}}
+\newcommand{\cvars}[1]{\cterms{\textit{#1}}}
+\newcommand{\cvarss}[1]{\ctermss{\textit{#1}}}
+\newcommand{\aeaevent}[1]{\left\langle{#1\/}\right\rangle}
+\newcommand{\NTSym}[1]{\textit{#1\/}}
+\newcommand{\TSym}[1]{\texttt{#1}}
+\newcommand{\TSy}[1]{\protect{\verb|{#1}|}}
+\newcommand{\guard}[2]{\mathit{Guard}(#1,#2)}
+\newcommand{\guardp}[2]{\guard{#1}{\mathtt{#2}}}
+\newcommand{\unify}[2]{\mathit{Unify}(#1,#2)}
+\newcommand{\unifyp}[2]{\unify{#1}{\mathtt{#2}}}
+\newcommand{\trms}[2]{\mathsf{Z}_{#1}({#2})}
+\newcommand{\timed}[2]{\mathsf{timed}({#1},{#2})}
+\newcommand{\res}[6]{\left\langle#1,#2,#3,#4,#5\right\rangle_{#6}}
+\newcommand{\reslast}[6]{\left\langle#1,#2,#3,#4,#5\right\rangle_{#6}^*}
+\newcommand{\evaltrans}{\longrightarrow_e}
+\newcommand{\reacttrans}{\longrightarrow_r}
+\newcommand{\timetrans}{\longrightarrow_t}
+%\newcommand{\envtrans}{\longrightarrow_{env}}
+\newcommand{\sittrans}{\longrightarrow_{s}}
+%\newcommand{\servtrans}{\longrightarrow_s}
+\newcommand{\optrans}{\longrightarrow_o}
+\newcommand{\logtrans}{\longrightarrow_l}
+\newcommand{\fevalname}{\mathsf{E}}
+\newcommand{\feval}[3]{\fevalname({#1},{#2},{#3})}
+\newcommand{\tcstate}[7]{\left.^{#4,#5\!\!}\left\langle#1,#2,#3\right\rangle^{#6}_{#7}\right.}
+\newcommand{\satisf}[2]{\mathsf{sat}({#1},{#2})}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+% Grammars
+\newcommand{\variable}[1]{\left\langle{#1\/}\right\rangle}
+\newcommand{\terminal}[1]{\mathtt{#1}}
+% Short cut
+\newcommand{\bblock}[2]{\begin{block}{#1}#2\end{block}}
+\newcommand{\bblockiz}[2]{\begin{block}{#1}\begin{itemize}#2\end{itemize}\end{block}}
+\newcommand{\bblocken}[2]{\begin{block}{#1}\begin{enumerate}#2\end{enumerate}\end{block}}
+
+\lstdefinelanguage{Solidity}{
+	keywords=[1]{anonymous, assembly, assert, balance, break, call, callcode, case, catch, class, constant, continue, contract, debugger, default, delegatecall, delete, do, else, event, export, external, false, finally, for, function, gas, if, implements, import, in, indexed, instanceof, interface, internal, is, length, library, log0, log1, log2, log3, log4, memory, modifier, new, payable, pragma, private, protected, public, pure, push, require, return, returns, revert, selfdestruct, send, storage, struct, suicide, super, switch, then, this, throw, transfer, true, try, typeof, using, value, view, while, with, addmod, ecrecover, keccak256, mulmod, ripemd160, sha256, sha3 emit}, % generic keywords including crypto operations
+	keywordstyle=[1]\color{blue}\bfseries,
+	keywords=[2]{address, bool, byte, bytes, bytes1, bytes2, bytes3, bytes4, bytes5, bytes6, bytes7, bytes8, bytes9, bytes10, bytes11, bytes12, bytes13, bytes14, bytes15, bytes16, bytes17, bytes18, bytes19, bytes20, bytes21, bytes22, bytes23, bytes24, bytes25, bytes26, bytes27, bytes28, bytes29, bytes30, bytes31, bytes32, enum, int, int8, int16, int24, int32, int40, int48, int56, int64, int72, int80, int88, int96, int104, int112, int120, int128, int136, int144, int152, int160, int168, int176, int184, int192, int200, int208, int216, int224, int232, int240, int248, int256, mapping, string, uint, uint8, uint16, uint24, uint32, uint40, uint48, uint56, uint64, uint72, uint80, uint88, uint96, uint104, uint112, uint120, uint128, uint136, uint144, uint152, uint160, uint168, uint176, uint184, uint192, uint200, uint208, uint216, uint224, uint232, uint240, uint248, uint256, var, void, ether, finney, szabo, wei, days, hours, minutes, seconds, weeks, years},	% types; money and time units
+	keywordstyle=[2]\color{teal}\bfseries,
+	keywords=[3]{block, blockhash, coinbase, difficulty, gaslimit, number, timestamp, msg, data, gas, sender, sig, value, now, tx, gasprice, origin},	% environment variables
+	keywordstyle=[3]\color{violet}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{gray}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\scriptsize\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=none,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=none,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  %language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=0,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+

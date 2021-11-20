@@ -1,0 +1,47 @@
+\chapter{Introduzione}
+
+L'ambiente, per definizione, è tutto ciò che circonda e con cui interagisce un organismo \cite{treccani}. I Sistemi Multi-Agente (MAS) forniscono diverse astrazioni per la costruzione di un sistema software, ma le tecnologie disponibili risultano spesso carenti sotto il punto di vista della costruzione dell'ambiente (virtuale) in cui gli agenti operano, poiché si concentrano solamente sulla definizione di un ambiente computazionale esclusivamente logico, slegato dal mondo fisico (che può invece essere rappresentato sul piano virtuale). 
+
+\medskip
+
+Le Game Engine (GE), ovvero framework utilizzati per supportare la progettazione e lo sviluppo di videogiochi, viceversa, sono sempre più spesso utilizzate al di fuori dell'ambito video-ludico per rappresentare e gestire ambienti (virtuali) complessi, potenzialmente riflesso di un ambiente fisico, ad esempio in scenari di simulazione tattica (militare, di soccorso, etc.). In particolare, di recente le GE sono state utilizzate come mezzo abilitante per la coordinazione \cite{gamemas-woa2016} all'interno di MAS.
+
+\medskip 
+
+L'ambiente, o scena, secondo la terminologia dei videogiochi, è una parte fondamentale che permette al giocatore di entrare in sinergia con il tipo, lo scopo e le modalità del gioco. Un esempio lampante è un FPS\footnote{First-Person Shooter = sparatutto in prima persona} dove la scena è solitamente vista in prima persona dal videogiocatore, e la presenza di elementi con i quali interagire, crea interesse nel giocatore ad esplorare l'ambiente attorno a lui.
+
+\medskip
+
+In questa tesi si intende studiare lo stato di integrazione tra Game Engine (GE) e Sistemi Multi-Agente (MAS), per proporre un'infrastruttura generica utilizzabile per diversi scenari di associazione e comunicazione tra MAS e GE rispettandone il disaccoppiamento e l'integrità concettuale delle loro astrazioni.
+
+\medskip
+
+Il primo capitolo introduce il lettore ai Sistemi Multi-Agente (MAS), alle Game Engine (GE) ed alle integrazioni già realizzate in passato. Vengono dunque illustrate le astrazioni presenti nei MAS, le GE e si studia lo stato dell'arte delle integrazioni.
+
+\medskip
+
+Il secondo capitolo, poi, analizza i differenti modelli computazionali delle tecnologie utilizzate, al fine di definire delle linee guida all'integrazione dei due sistemi, e descrive la struttura del sistema di integrazione.
+
+\medskip
+
+Il terzo capitolo contiene una descrizione più approfondita degli elementi che compongono il middleware, la tecnologia di comunicazione utilizzata per collegare le diverse parti del sistema e le librerie sviluppate per mettere in comunicazione MAS e GE attraverso il middleware.
+
+\medskip
+
+Il quarto capitolo contiene il caso di studio preso in esame per convalidare il sistema precedentemente delineato, mostrando struttura dei componenti realizzati e illustrando il flusso di interazione tra essi. Infine, nel Capitolo 5 si discuterà circa le conclusioni e verranno forniti spunti di riflessione per eventuali lavori futuri.
+
+\medskip
+
+La principale motivazione che ha portato a questo studio risiede nel fatto che seppur la ricerca sui MAS ha prodotto modelli ricchi di astrazioni anche per la modellazione della dimensione ambientale, oltre a quella agentesca e sociale, le tecnologie che dovrebbero reificare tali modelli sono più rare e spesso limitate. Uno degli esempi più ricchi è costituito dal framework CArtAgO \cite{cartago}, non a caso sfruttato per il design e l'implementazione dell'infrastruttura proposta in questa tesi.
+
+\medskip
+
+Esiste un divario nel progresso tecnologico che le GE hanno raggiunto rispetto al livello tecnologico delle infrastrutture orientate agli agenti nate all'interno della comunità accademica. Ciò non dovrebbe sorprendere nessuno: il settore video-ludico può contare su un maggiore supporto economico e su milioni di sviluppatori e tester (oltre ai giocatori), che sono ben pagati per spingere stabilità, prestazioni, usabilità dei loro prodotti a livelli di qualità senza precedenti e senza pari. Pertanto, vale la pena considerare la possibilità di trarre vantaggio da tali prodotti finemente ottimizzati per migliorare la qualità delle tecnologie mirate alla rappresentazione e gestione di ambienti virtuali nei MAS \cite{ge-architecture}.
+
+\medskip
+
+Una integrazione MAS -- GE non darebbe benefici solo la "mondo MAS". C'è una lacuna nelle astrazioni concettuali e progettuali che la GE fornisce agli sviluppatori rispetto alle astrazioni molto più ricche che offrono soluzioni di ingegneria del software orientate agli agenti. La GE presa in considerazione in questo documento, Unity \cite{unity}, ad esempio fornisce astrazioni di livello molto basso, specialmente lato "personaggi attivi", dove, ad esempio, programmare un comportamento ciclico e orientato a un goal equivale a scrivere coroutine che attraversano più fasi di rendering---goal e piani per raggiungerli non sono modellati da astrazioni di prima classe. 
+
+\medskip
+
+Inoltre, l'integrazione di MAS con GE può fornire nuove soluzioni per affrontare le problematiche tipiche degli scenari di realtà aumentata in cui si richiede che l'agente sia consapevole dello spazio in un ambiente fisico, sfruttando le tecnologie a disposizione nelle GE. D'altro canto tale integrazione mette a disposizione nuove funzionalità in grado di realizzare, all'interno dell'ecosistema GE, oggetti autonomi come ad esempio gli NPC\footnote{Non-Player Character: è un personaggio che non è sotto il controllo diretto del giocatore, ma viene invece gestito dal game master o dalla IA del software nel caso dei videogiochi} utilizzando le astrazioni presenti nei MAS.

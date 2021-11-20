@@ -1,0 +1,16 @@
+{
+   "Sender": "test_mind", // nome del mittente
+   "Receiver": "test_body", // nome del ricevente
+   "Content": "go_to", // contenuto principale del messaggio
+   "Params": [ // array di parametri
+      1.00,
+      -5.43,
+      "fast"
+   ],
+   "TimeStats": [ // array ordinato di statistiche temporali
+      1563478689301, // mills all'invio
+      1563478689310, // mills alla ricezione del middleware
+      1563478689311, // mills all'invio dal middleware
+      1563478689320 // mills alla ricezione
+   ]
+}

@@ -1,0 +1,15 @@
+\subsection{Integrazione}
+
+Sono già presenti esempi di integrazione tra GE e MAS che concentrano la propria attenzione su obiettivi specifici a livello tecnologico, piuttosto che sulla creazione di un'infrastruttura orientata agli agenti basata sul gioco per scopi generici. Per esempio:
+\begin{itemize}
+    \item QuizMASter \cite{5763564} concentrato sull'astrazione degli agenti collegando gli agenti MAS ai personaggi dei motori di gioco, nel contesto dell'apprendimento educativo;
+    \item CIGA \cite{ciga} considera sia la modellazione degli agenti che quella dell'ambiente, per agenti virtuali generici in ambienti virtuali;
+    \item GameBots \cite{gamebots} concentrato sull'astrazione dell'agente, ma considera ancora l'ambiente fornendo al contempo un framework di sviluppo e un runtime per i test di sistemi multi-agente in ambienti virtuali;
+    \item UTSAF \cite{utsaf} si concentra sulla modellistica ambientale nel contesto di simulazioni distribuite in ambito militare\footnote{Gli agenti vengono considerati, ma solo come mezzo di integrazione tra diverse piattaforme di simulazione, non nel contesto del GE sfruttato per il rendering di simulazione}.
+\end{itemize}
+
+Sebbene rappresentino chiaramente esempi di integrazione (parzialmente) riuscita di MAS in GE, i lavori sopra elencati presentano alcune carenze rispetto all'obiettivo che perseguiamo in questo documento.
+
+\smallskip
+
+Solamente CIGA rappresenta un'eccezione che riconosce il divario concettuale tra MAS e GE, e propone soluzioni per affrontarlo (anche se a livello tecnologico). L'unico strato preso in considerazione nel perseguimento dell'integrazione è quello tecnologico - nessun modello, nessuna architettura, nessun linguaggio. All'interno di QuizMASter, UTSAF e GameBot (in una certa misura) l'integrazione è specificamente realizzata per obiettivo dove la maggior parte degli approcci fornisce ai programmatori alcune astrazioni per trattare con agenti e ambiente, nessuna attenzione viene data alle astrazioni sociali.\cite{gamemas-woa2016}

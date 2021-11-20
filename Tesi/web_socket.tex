@@ -1,0 +1,63 @@
+\subsection{WebSocket} \label{standard_websocket}
+
+Il protocollo WebSocket (WS) consente la comunicazione bidirezionale tra un client a un host remoto instaurando un canale di comunicazione utilizzabile da entrambi sia in scrittura che in lettura. Il modello di sicurezza utilizzato è l'origin-based security model comunemente usato dai browser web. Il protocollo consiste in una fase di hand-shake di apertura seguita dal successivo invio/ricezione di una serie di messaggi strutturati, stratificata su una connessione TCP\footnote{Transmission Control Protocol} persistente. L'obiettivo di questa tecnologia è fornire un meccanismo per le applicazioni basate su browser che necessitano di comunicazione bidirezionale in tempo reale con server che non si basano sull'apertura di più connessioni HTTP \cite{RFC6455}.
+
+\subsubsection{Introduzione delle WebSocket}
+
+Storicamente, la creazione di applicazioni Web che richiedono la comunicazione bidirezionale tra client e server (ad esempio applicazioni di messaggistica istantanea e giochi) ha portato ad un abuso di HTTP utilizzato per operazioni di polling (verifica ciclica) verso il server con lo scopo di controllare gli aggiornamenti, inviando notifiche upstream come chiamate HTTP distinte \cite{RFC6202}.
+
+\medskip
+
+Il protocollo HTTP è stato inteso fin dalla prima versione ideata da Tim Berners-Lee come metodo per recuperare risorse remote in maniera semplice: una richiesta per ogni pagina Web, ogni immagine o l’invio di dati da rendere persistente. Con il passare degli anni però, all’incirca intorno al 2004, lo sviluppo di applicazioni Web subì una forte accelerazione dovuta all’introduzione di una nuova tecnologia, Ajax, che grazie all'utilizzo di Javascript fu in grado di creare e gestire richieste HTTP asincrone tramite funzioni di callback dedicate.
+
+\medskip
+
+Seguendo l’evoluzione delle applicazioni Web molte applicazioni prevedevano una user experience orientata al real-time. Esempi possono essere applicazioni di chat, videogiochi multiplayer o sistemi di notifiche, tutte applicazioni che la sola tecnologia Ajax (o simili, come connessioni HTTP persistenti COMET) poteva simulare solo in parte con sistemi di polling poco performanti e complessi da implementare.
+
+\medskip
+
+La soluzione arrivò quando ci si rese conto che la risposta a questi problemi risiedeva effettivamente nel protocollo stesso: HTTP sfrutta a livello di rete il protocollo TCP/IP, connection-oriented, usata in altri contesti singolarmente per connessioni full-duplex. Nacque così il protocollo WebSocket con un ottimo tempismo considerando l’avvento contemporaneo di HTML5 e altre tecnologie che contribuiranno successivamente alla diffusione del protocollo \cite{websocket_hystory}.
+
+\medskip
+
+\subsubsection{Principali caratteristiche}
+
+Ecco le caratteristiche principali del protocollo WebSocket:
+\begin{itemize}
+    \item \textbf{Bidirezionali}: quando il canale di comunicazione è attivo, sia il client che il server sono connessi ed entrambi possono inviare e ricevere messaggi;
+    \item \textbf{Full-duplex}: i dati inviati contemporaneamente dai due attori (client e server) non generano collisioni e vengono ricevuti correttamente;
+    \item \textbf{Basati su TCP}: il protocollo usato a livello di rete per la comunicazione è il TCP, che garantisce un meccanismo affidabile (controllo degli errori, re-invio di pacchetti persi, ecc) per il trasporto di byte da una sorgente a una destinazione;
+    \item \textbf{Client-key handshake}: All’apertura di una connessione, il client invia al server una chiave segreta di 16 byte codificata con base64. Il server aggiunge a questa un’altra stringa, detta GUID\footnote{Globally Unique Identifier} specificata nel protocollo e codifica con SHA1 e invia il risultato al client. Cosi facendo, il client può verificare che l’identità del server che ha risposto corrisponda a quella desiderata;
+    \item \textbf{Sicurezza origin-based}: Alla richiesta di una nuova connessione, il server può identificare l’origine della richiesta come non autorizzata o non attendibile e rifiutarla.
+    \item \textbf{Maschera dei dati}: Nella trama iniziale di ogni messaggio, il client invia una maschera di 4 byte per l’offuscamento. Effettuando uno XOR bit a bit tra i dati trasmessi e la chiave è possibile ottenere il messaggio originale. Ciò è utile per evitare lo sniffing, cioè l’intercettazione di informazioni da parte di terze parti.
+\end{itemize}
+
+\subsubsection{WebSocket URIs}
+
+La specifica RFC \cite{RFC6455} stabilisce due differenti tipologie di URI\footnote{Uniform Resource Identifier} per rappresentare una risorsa remota di tipo WebSocket:
+
+\begin{enumerate}
+    \item ws-URI = ws://HOST[:PORT]/PATH[?QUERY];
+    \item wss-URI = wss://HOST[:PORT]/PATH[?QUERY].
+\end{enumerate}
+
+In entrambi i casi i seguenti parametri stanno a significare:
+
+\begin{itemize}
+    \item HOST: l'host dove risiede la risorsa;
+    \item PORT: la porta sul quale l'host rende disponibile la risorsa. Questo pramentro è opzionale e se non specificato viene inteso:
+    \begin{itemize}
+        \item Porta 80 per connessioni WS
+        \item Porta 443 per connessioni WSS
+    \end{itemize}
+    \item PATH: il percorso all'interno dell'host dove trovare la risorsa;
+    \item QUERY: la query da compiere sulla risorsa.
+\end{itemize}
+
+
+L'utilizzo di questo protocollo per lo svolgimento della tesi è stato favorito dalle caratteristiche coerenti al tipo di sistema che si intende creare, nonché dal supporto nativo presente nel framework Play e dalla facile reperibilità di librerie per JaCaMo e Unity:
+
+\begin{itemize}
+   \item \textbf{websocket-sharp}: Implementazione C\# del protocollo WebSocket client/server \cite{websocket-sharp}
+   \item \textbf{project tyrus}: Implementazione Java dello standard JSR 356\footnote{Java API per WebSocket, conforme al protocollo RFC6455} \cite{tyrus}
+\end{itemize}

@@ -1,0 +1,15 @@
+\section{Integrazione}
+
+Esistono già esempi di integrazione tra GE e MAS che concentrano la propria attenzione su obiettivi specifici a livello tecnologico, piuttosto che sulla creazione di un'infrastruttura orientata agli agenti basata sul gioco per scopi generici. Nello specifico:
+\begin{itemize}
+    \item QuizMASter \cite{5763564} si concentra sull'astrazione degli agenti collegando i MAS ai personaggi dei motori di gioco, nel contesto dell'apprendimento educativo;
+    \item CIGA \cite{ciga} considera sia la modellazione degli agenti che quella dell'ambiente, per agenti virtuali generici in ambienti virtuali;
+    \item GameBots \cite{gamebots} si concentra sull'astrazione dell'agente, ma considera ancora l'ambiente fornendo al contempo sia un framework di sviluppo sia un runtime per i test di sistemi multi-agente in ambienti virtuali;
+    \item UTSAF \cite{utsaf} si focalizza sulla modellistica ambientale nel contesto di simulazioni distribuite in ambito militare\footnote{Gli agenti vengono considerati, ma solo come mezzo di integrazione tra diverse piattaforme di simulazione, non nel contesto del GE sfruttato per il rendering di simulazione.}
+\end{itemize}
+
+Sebbene rappresentino chiaramente esempi di integrazione (parzialmente) riuscita di MAS in GE, i lavori sopra elencati presentano alcune carenze rispetto all'obiettivo che perseguiamo in questo documento.
+
+\smallskip
+
+Solamente CIGA fa eccezione poichè riconosce il divario concettuale tra MAS e GE e propone soluzioni per affrontarlo (anche se a livello tecnologico). L'unico strato preso in considerazione nel perseguimento dell'integrazione è quello tecnologico - nessun modello, nessuna architettura, nessun linguaggio.\\ All'interno di QuizMASter, UTSAF e GameBot (in una certa misura) l'integrazione è specificamente realizzata per obiettivo, dove la maggior parte degli approcci fornisce ai programmatori alcune astrazioni per trattare con agenti e ambiente, nessuna attenzione viene data alle astrazioni sociali.\cite{gamemas-woa2016}

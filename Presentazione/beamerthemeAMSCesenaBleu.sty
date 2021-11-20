@@ -1,0 +1,56 @@
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/theme/beamerthemeAMSCesenaBleu.sty,v 1.0 2016/08/15 20:08:30 omicini Exp $
+% Copyright 2016 by Andrea Omicini <andrea.omicini@unibo.it>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+\mode<presentation>
+%
+\setbeamertemplate{navigation symbols}{}
+%
+\useoutertheme{infolines}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{beaver}
+%%%% Setting base colour
+%% French Blue -- http://latexcolor.com
+\definecolor{frenchblue}{rgb}{0.0, 0.45, 0.73}
+%% Tricking beamer: darker becomes...
+\definecolor{darkred}{rgb}{0.0, 0.45, 0.73} % frenchblue
+%% Base colour for slides
+\definecolor{basecolour}{rgb}{0.0, 0.45, 0.73} % frenchblue
+%%%% Overriding beaver
+% bullets
+\setbeamercolor*{item}{fg=frenchblue}
+% block header
+\setbeamercolor{block title}{use=structure,fg=white,bg=frenchblue!55!black}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=frenchblue!35!black}
+\setbeamercolor{block title example}{use=example text,fg=frenchblue!10!black,bg=frenchblue!30!white}
+% block body
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=frenchblue!4!white}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=frenchblue!1!white}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=frenchblue!2!white}
+% text
+\setbeamercolor{normal text}{fg=frenchblue!10!black}
+\setbeamercolor{alerted text}{fg=frenchblue!90!black}
+\setbeamercolor{quote}{fg=darkgray}
+% biblio
+\setbeamercolor{footnote mark}{fg=gray}
+\setbeamercolor{footnote}{fg=lightgray}
+\setbeamercolor{bibliography entry author}{fg=frenchblue!10!black}
+\setbeamercolor{bibliography entry title}{fg=frenchblue!90!black} 
+\setbeamercolor{bibliography entry location}{fg=frenchblue!50!black} 
+\setbeamercolor{bibliography entry note}{fg=frenchblue!75!black}  
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% Alma Logo
+%\pgfdeclareimage[width=\paperwidth]{bg}{./res/img/almacesena-background}
+%\setbeamertemplate{background}{\pgfuseimage{bg}}
+% new commands
+\newcommand{\ccite}[1]{{\textcolor{gray}{\scriptsize\cite{#1}}}}
+\newcommand{\cccite}[1]{{\textcolor{lightgray}{\scriptsize\cite{#1}}}}
+\newcommand{\uurl}[1]{{\textcolor{gray}{\scriptsize\url{#1}}}}
+\newcommand{\hhref}[2]{{\textcolor{gray}{\scriptsize\href{#1}{\texttt{\underline{#2}}}}}}
+\newcommand{\uuurl}[1]{{\textcolor{lightgray}{\scriptsize\url{#1}}}}
+%\renewcommand{\emph}[1]{\textcolor{frenchblue!50!black}{\textit{#1}}}
+%\renewcommand{\alert}[1]{\textcolor{frenchblue!90!black}{#1}}
+
+\mode
+<all>

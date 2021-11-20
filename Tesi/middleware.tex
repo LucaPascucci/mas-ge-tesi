@@ -1,0 +1,98 @@
+\section{Middleware}
+\marianiSays{metterei prima la 2.5 della 2.4...la 2.4 mi sembra più tecnica e che spezzi un pò il flusso...}
+\begin{itemize}
+   \item struttura middleware (akka + websocket)
+   \begin{itemize}
+      \item Attore
+      \begin{itemize}
+         \item RealActor
+         \item MockActor
+      \end{itemize}
+      \item Eventbus
+      \item WebSocket
+   \end{itemize}
+   \item URL di collegamento alle websocket (con aggiunta di parametri type + name)
+   \item Vincoli
+   \begin{itemize}
+      \item Mente e corpo con lo stesso nome (case sensitive)
+      \item Il contenuto principale dei messaggi scambiati tra le due entità deve iniziare con una lettera minuscola per rispettare la sintassi dei belief di Jason,
+   \end{itemize}
+\end{itemize}
+
+\change[inline]{da sistemare}
+\subsection{Struttura}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/Middleware_structure.png}
+\caption{Architettura e componenti utilizzate nel middleware}
+\end{figure}
+\marianiSays{la figura 2.4 è piuttosto importante, magari mettila in orizzontale a tutta pagina}
+\subsection{Actor + WebSocket}
+
+Play Framework effettua un collegamento tra connessione WebSocket ed attore, trattando la WebSocket come un "attore". Alla richiesta (esterna) di una connessione websocket, play crea l'attore (da me definito) ed in caso di chiusura della connessione si occupa di "rimuovere" lo stesso dal sistema.
+
+\medskip
+
+Quando arriva un messaggio dall'esterno viene inoltrato all'attore (\textbf{mind} e \textbf{body}), che possiede il riferimento alla connessione, come se fosse un normale messaggio (stringa), quindi ricevuto dall'attore attraverso il metodo onReceive. Nella stessa maniera l'attore (\textbf{mind} e \textbf{body}) può inviare un messaggio tramite la websocket come se inviasse un messaggio ad un normale attore.
+
+Url locale per collegarsi al middleware:
+
+ws://localhost:9000\textbf{/synapsiservice/type/name}
+
+Url per collegarsi al middleware:
+
+ws://synapsis-middleware.herokuapp.com\textbf{/synapsiservice/type/name}
+
+\medskip
+
+Lo sviluppatore finale può decidere su quale server avviare il middleware ma l'endpoint, che identifica il servizio messo a disposizione dal middleware rimane sempre lo stesso. Nelle librerie realizzate per la GE (Unity3D) ed il MAS (JaCaMo) è possibile configurare l'indirizzo dell'host a cui collegarsi.
+
+\medskip
+
+\subsection{EventBus}
+\href{https://doc.akka.io/docs/akka/current/event-bus.html}{Classe}, messa a disposizione da \href{https://akka.io/}{akka}, da estendere per inviare messagi broadcast identificat da un \textbf{topic}. Tutti i subscribers ad un determinato \textbf{topic} riceveranno un messaggio (metodo --> onReceive) quando viene pubblicato nuovo contenuto. In questo caso è utilizzato per effettuare un primo abbinamento tra i due attori (\textbf{mind} e \textbf{body}) quindi in caso di nuovi attori che entrano a far parte o che lasciano l'actor-system. Quindi ogni attore invia un'evento/messaggio del tipo \textit{"unito al sistema"} che verrà interpretato nella maniera corretta solo dalla controparte (utilizzando TipoEntità e NomeEntità come filtri). Nello stesso modo invia un'evento/messaggio del tipo \textit{"lasciato il sistema"} nel caso la connessione alla WebSocket venga a mancare.
+
+\medskip
+
+\subsection{MockActor}
+\marianiSays{il mockactor è più una cosa di testing o rapid prototyping se non sbaglio, lo vedo più come un tool a support del programmatore, dunque non lo metterei quì nel middleware, lo terrei per un eventuale appendice}
+Classe (che estende UntypedAbstractActor) utilizzabile per realizzare finti attori utile a velocizzare la fase di sviluppo. Contiene le funzionalità basilari per collegarsi e comunicare com la controparte (\textbf{mind} e \textbf{body}).
+Passi da seguire per realizzare specifici attori utilizzando \textbf{MockActor}:
+\begin{enumerate}
+    \item Creare una classe java che estenda MockActor,
+    \item Posizionare la classe dentro il package \textbf{actor.mock},
+    \item Utilizzare il codice sottostante per completare la procedura.
+\end{enumerate}
+
+\lstinputlisting[caption=Esempio di attore specifico,language=Java]{code/TestMock.java}
+
+A disposizione dello sviluppatore sono presenti dei metodi, implementati all'interno del \textbf{MockActor}, per interagire con l'entità (controparte) collegata.
+
+\lstinputlisting[caption=Metodi di interazione con la controparte,language=Java]{code/MockActorAPI.java}
+
+\subsubsection{Modifica architettura con MockActor di tipo \textbf{body}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/Middleware_structure_mock_body.png}
+\caption{Architettura e componenti con un MockActor di tipo \textbf{body}}
+\end{figure}
+
+\subsubsection{Modifica architettura con MockActor di tipo \textbf{mind}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/Middleware_structure_mock_mind.png}
+\caption{Architettura e componenti con un MockActor di tipo \textbf{mind}}
+\end{figure}
+
+\subsubsection{Istanziare MockActor direttamente all'interno del middleware}
+
+A disposizione dello sviluppatore finale sono presenti due metodi, utilizzabili all'interno del costruttore della classe \textbf{Application}, attraverso i quali è possibile instanziare gli attori precedentemente realizzati.
+
+\lstinputlisting[caption=Istanziare MockActor nel middleware,language=Java]{code/Application_mock.java}
+
+\subsubsection{Istanziare MockActor dall'esterno del middleware}
+
+Per istanziare runtime MockActor sono state fornite delle \unsure{Non penso sia corretto chiamarle API}API su JaCaMo e Unity che comunicano direttamente con il middleware e permettono la creazione di questi attori attraverso l'invio di un messaggio prestbilito. Le API consistono nell'invocazione di un metodo (Lato Unity) e un plan (Lato JaCaMo) che automaticamente crea un messaggio ad hoc letto dal middleware. Lo sviluppatore deve fare attenzione a scrivere correttamente il nome della classe da istanziare ed a posizionare la classe Java nel corretto package (actors.mock) quando utilizza questa API a lui fornita.

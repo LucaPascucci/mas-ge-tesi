@@ -1,0 +1,48 @@
+\chapter{JaCaMo} \label{appendice_JaCamo}
+
+\section{Utilizzare la libreria}
+
+La distribuzione della libreria realizzata per JaCaMo viene effettuata attraverso la generazione di un \textit{Jar}\footnote{\textbf{J}ava \textbf{AR}chive} contenente classi Java e file \textit{"asl"}. Questa modalità non permette di includere le dipendenze esterne \cite{gson}\cite{tyrus}, che devono essere importate manualmente nel progetto. 
+
+\medskip
+
+La libreria prodotta, \textit{SynapsisJaCaMo.jar}, è disponibile sul repository del middleware (sezione \ref{materiale_online}) e per utilizzarla è sufficiente importarla nel nuovo progetto JaCaMo.
+
+\section{Realizzare Artefatti Synapsis custom} \label{artefatto_custom}
+
+Come spiegato nella sezione \ref{artefatto_synapsis}, la classe \textit{SynapsisMind} definisce un artefatto con le funzionalità di comunicazione con il middleware. Per realizzare un artefatto custom è sufficiente creare una classe Java che estenda \textit{SynapsisMind}.
+
+\lstinputlisting[label={artefattoSynapsisCustom},caption={Artefatto Synapsis custom},language=Java]{code/TestSynapsisArtifact.java}
+
+Il listato \ref{artefattoSynapsisCustom} contiente un esempio di artefatto custom che estende la classe \textit{SynapsisMind}. Il metodo \textit{init(..)} è il costruttore invocato, secondo le logiche di CArtAgO, durante la creazione di un generico artefatto. Su Synapsis, questo metodo viene utilizzato per fornire all'artefatto informazioni utili (indirizzo e tentativi di riconnessione) per effettuare il collegamento WebSocket, quindi nell'artefatto custom è necessario richiamare il metodo originario utilizzando il costrutto \textit{super}.
+
+\medskip
+
+Con l'estensione della classe \textit{SynapsisMind} viene automaticamente richiesta la definizione dei metodi che permettono la gestione di informazioni in arrivo alla mente:
+\begin{itemize}
+    \item counterpartEntityReady --> Invocato al collegamento con l'entità corpo;
+    \item counterpartEntityUnready --> Invocato alla disconnessione con l'entità corpo;
+    \item parseIncomingMessage --> Invocato ad ogni messaggio (percezione) ricevuto dal corpo;
+\end{itemize}
+
+Per definire azioni specifiche, in aggiunta alle azioni già presenti spiegate nella sezione \ref{artefatto_synapsis}, è necessario definire un nuovo metodo, con la notazione @OPERATION (per renderlo utilizzabile dall'agente), ed invocare il metodo \textit{doAction} per inviare il messaggio al corpo. Nel listato  \ref{artefattoSynapsisCustom} è presente il metodo \textit{azionePersonalizzata} come esempio di azione custom.
+
+\medskip
+
+Per la modalità di collegamento tra artefatto ed agente è necessario utilizzare anche la successiva sezione.
+
+\section{Realizzare Agenti Synapsis custom} \label{agente_custom}
+
+Per realizzare agenti Synapsis custom è necessario importare l'agente \textit{synapsis\_base\_agent.asl} presente nella libreria. 
+
+\lstinputlisting[label={jarasl},caption={Includere file .asl da Jar},language=asl]{code/includereASLdaJAR.asl}
+
+Nel listato \ref{jarasl} è presente il comando, messo a disposizione da JaCaMo, per importare file .asl presenti all'interno di Jar. Questa riga è da aggiungere al nuovo agente che si sta realizzando. Con l'operazione precedente si hanno a diposizione tutti i beliefs, goals e plan di \textit{synapsis\_base\_agent}.
+
+\lstinputlisting[label={testagent},caption={Agente Synapsis custom},language=asl]{code/test_agent.asl}
+
+Il listato \ref{testagent} rappresenta un agente custom pronto all'utilizzo. I beliefs iniziali sono necessari ad effettuare il collegamento WebSocket. Da notare è il belief \textit{synapsis\_mind\_class("artifacts.TestSynapsisArtifact")} utilizzato da \textit{synapsis\_base\_agent} per sapere quale classe rappresenta il proprio artefatto.
+
+\medskip
+
+Il plan \textit{+synapsis\_counterpart\_status(Name, C)} viene utilizzato per conoscere lo stato di collegamento con la controparte corpo. Questo plan viene scatenato dall'aggiornamento delle proprietà osservabili dell'artefatto secondo le informazioni ricevute dal middelware. Per completare il ciclo è stato definito il plan \textit{+!prova} per utilizzare l'operazione precedentemene definita nell'artefatto \ref{artefattoSynapsisCustom}.

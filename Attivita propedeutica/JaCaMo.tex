@@ -1,0 +1,66 @@
+\subsection{JaCaMo}
+
+JaCaMo è un framework per la programmazione orientata agli agenti che combina tre tecnologie già affermate e sviluppate da diversi anni.
+
+\medskip
+
+Un sistema multi-agente JaCaMo o, equivalentemente, un sistema software programmato con JaCaMo è definito da un'organizzazione Moise di agenti BDI autonomi basati su concetti come ruoli, gruppi, missione e schemi, implementati tramite Jason, che lavorano in ambienti condivisi distribuiti basati su artefatti, programmati in CArtAgO.
+
+\medskip
+
+Ognuna delle tre tecnologie indipendenti che compongono il framework ha il proprio set di astrazioni, modelli di programmazione e meta-modelli di riferimento; per questo motivo in JaCaMo è stato realizzato un meta-modello globale, con l'obiettivo di definire le dipendenze, le connessioni, i mapping concettuali e le sinergie tra le differenti astrazioni rese disponibili da ogni livello.\cite{BOISSIER2013747}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/JaCaMo_levels.png}
+\caption{Livelli che compongono il framework JaCaMo\cite{BOISSIER2013747}}
+\end{figure}
+
+Per apprendere questo framework, che non era stato affrontato durante il corso degli studi, sono stati utilizzati il sito \cite{jacamo} ed il paper di riferimento \cite{BOISSIER2013747}. 
+
+\subsubsection*{Jason} \label{jason}
+
+Jason è un interprete di AgentSpeak che implementa la semantica operazionale del linguaggio e fornisce una piattaforma di sviluppo per multi-agent systems, con molte funzionalità user-customisable. Il linguaggio e la piattaforma sono stati illustrati ed utilizzati, durante il corso di laurea, nell'insegnamento Sistemi Autonomi. 
+
+\medskip
+
+Le astrazioni appartenenti agli agenti, correlate al meta-modello Jason, sono principalmente ispirate all'architettura BDI sulla quale Jason è radicato. Quindi un agente è un'entità composta da un insieme di "beliefs", che rappresentano lo stato corrente e la conoscenza dell'agente sull'ambiente in cui si trova, una serie di "goals", che corrispondono a compiti che l'agente deve eseguire / ottenere e una serie di "plans" ossia azioni (external action or internal action), innescate da eventi, che gli agenti possono comporre, istanziare ed eseguire dinamicamente per compiere i "goals".\cite{jason-book}
+
+\subsubsection*{CArtAgO}
+Per quanto riguarda l'ambiente, ciascuna istanza di CArtAgO\footnote{Common ARTifact infrastructure for AGents Open environments} è composta da una o più entità workspace. Ogni workspace è formato da un insieme di artefatti, che forniscono un insieme di operazioni e proprietà osservabili, definendo anche l'interfaccia di utilizzo degli artefatti.
+
+\medskip
+
+L'esecuzione dell'operazione potrebbe generare aggiornamenti delle proprietà osservabili e degli eventi osservabili specifici. L'ultima entità relativa all'ambiente è il “manual” ed è utilizzata per descrivere le funzionalità fornite da un artefatto.
+
+\medskip
+
+CArtAgO è basato sul meta-modello A\&A (Agents \& Artifacts) gli agenti, come entità computazionali, compiono qualche tipo di attività che mira a uno scopo e gli artefatti, come risorse e strumenti costruiti dinamicamente, sono usati e manipolati dagli agenti per supportare/realizzare le loro attività\cite{cartago}. CArtAgo, come in precedenza Jason, era già stato parzialmente illustrato ed utilizzato durante il corso di Sistemi Autonomi, seppur in via superficiale. Gli approfondimenti necessari sono stati effettuati in autonomia facendo riferimento al materiale sullo stesso sito di JaCaMo.
+
+\smallskip
+
+\paragraph{Artefatto}
+L'artefatto è un'entità reattiva, non autonoma, stateful, riutilizzabile, controllabile ed osservabile. Modellano strumenti, risorse e porzioni di ambiente agendo da strumenti mediatori di azioni e interazioni sociali tra partecipanti individuali e lo stesso ambiente.\cite{Omicini2008}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/Artifact_structure_example.png}
+\caption{Struttura artefatto con relativi esempi}
+\end{figure}
+
+La modalità di interazione tra artefatto ed agente viene riepilogato nell'immagine sottostante.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/Artifact_Agent_interaction.png}
+\caption{Interazione tra agente ed artefatto}
+\end{figure}
+
+\subsubsection*{Moise}
+Moise è un meta-modello organizzativo per MAS basato sulle nozioni di ruoli, gruppi e missioni. Abilita un MAS ad avere specifiche esplicite per la sua organizzazione. Queste specifiche sono usate sia dagli agenti per ragioni inerenti la loro organizzazione, sia da una piattaforma organizzativa che si assicuri che gli agenti seguano le specifiche.
+
+Moise permette di definire una gerarchia di ruoli con autorizzazioni e missioni, da assegnare agli agenti. Questo permette ai sistemi con un'organizzazione forte, di guadagnare proprietà di apertura (essenzialmente, la proprietà di lavorare con un numero e una diversità di componenti che non e imposta una volta per tutte) e adattamento.
+
+\subsubsection*{Motivazioni} \label{temp}
+
+Come caso di studio si è deciso di utilizzare questo framework perché combina le tre tecnologie (di cui sopra) già affermate da diversi anni per lo studio e la produzione di software multi-agente rendendolo adatto alla realizzazione della mente di una generica entità. Jason e l'architettura DBI si prestano bene al dotare di intelligenza personaggi virtuali e CArtAgO è adatto ad integrare GE nei MAS come dimensione di ambiente.

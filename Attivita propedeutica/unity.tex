@@ -1,0 +1,23 @@
+\subsection{Unity} \label{unity}
+
+Unity è una Game Engine (GE) cross-platform sviluppata da Unity Technologies, utilizzata per la creazione di videogiochi (sia 2D che 3D) e simulazioni, che supporta la distribuzione su una larga varietà di piattaforme (PC, console, dispositivi mobili, etc.). Fornisce astrazioni che contribuiscono ad estendere il suo utilizzo tra gli sviluppatori e programmatori, rendendola una dei GE più utilizzate per produrre in maniera veloce ed efficace applicazioni e giochi.\cite{unity}
+
+\medskip
+
+Inoltre, questa GE supporta molte funzionalità facili da utilizzare e sfruttabili per creare giochi realistici e simulazioni immersive, come un intuitivo editor real-time, un sistema di fisica integrato, luci dinamiche, la possibilità di creare oggetti 2D e 3D direttamente dall'IDE o di importarli esternamente, gli shader, un supporto per l'intelligenza artificiale (capacità di evitare gli ostacoli, ricerca del percorso, etc.), e cosi via. Per apprendere le funzionalità messe a disposizione da questa GE è stato fatto uso della documentazione ufficiale \cite{unity-documentation} e dei tutorial \cite{unity-learn} messi a disposizione dalla stessa compagnia.
+
+\medskip
+
+Le funzionalità principali messe a disposizione del designer sono:
+\begin{itemize}
+	\item \textbf{GameObject}: La classe base per tutte le entità presenti su una scena di Unity: un personaggio controllabile dall'utente, un personaggio non giocabile, un oggetto (2D/3D). Tutto ciò che è presente sulla scena è un GameObject.
+	\item \textbf{Script}: Codice sorgente applicato a un GameObject, grazie al quale è possibile assegnare a quest'ultimo comportamenti e proprietà dinamiche. Gli script vengono eseguiti dal game loop di Unity, che in maniera sequenziale esegue una volta ogni script, durante ogni frame del gioco. Non esiste concorrenza. Il comportamento è il risultato della logica definita nello script attraverso funzioni e routine. Le proprietà equivalgono a variabili che possono essere valorizzare nello script oppure definite dall'IDE grafico.
+	\item \textbf{Component}: Elemento, proprietà speciale assegnabile ai GameObject. A seconda del tipo di GameObject che si desidera creare è necessario aggiungere diverse combinazioni di Components. I Components basilari riguardano la fisica (Transform, Collider,..), l'illuminazione (Light) e la renderizzazione del GameObject(Render). \'E possibile istanziare runtime Components attraverso gli script.
+	\item \textbf{Coroutine}: Una soluzione alla sequenzialità imposta agli script, grazie al quale è possibile partizionare una computazione e distribuirla su più frame, sospendendo e riprendendo l'esecuzione in precisi punti del codice.
+	\item \textbf{Prefab}: Rappresentazione di un GameObject complesso, completo di Script e Component, istanziabile più volte runtime. Le modifiche della struttura, proprietà e componenti del Prefab si propagheranno a tutti i GameObject collegati allo stesso presenti nella scena di gioco.
+	\item \textbf{Event e Messaging System}: sistema ad eventi molto utile per far comunicare tra loro diversi GameObject. Questi sistemi sono formati tipicamente da eventi e listener. I listener si sottoscrivono ad eventi di un certo tipo; quando l'evento si verifica, viene notificato a tutti i listener in ascolto dello stesso tipo attraverso l'invio di un messaggio.
+\end{itemize}
+
+\subsubsection*{Motivazioni}
+
+In questo studio si è deciso di utilizzare questa Game Engine dato che è l'ambiente adatto alla realizzazione del corpo di una generica entità. In secondo luogo, anche per mantenere un collegamento con i lavori precedentemente realizzati dai colleghi\cite{amslaurea8424}\cite{amslaurea15657}\cite{amslaurea16100}\cite{amslaurea12270}. Un'ulteriore motivazione per la quale è stato usato Unity riguarda la presenza di librerie, ben documentate, per integrare la tecnologia WebSocket.\cite{websocket-sharp}. 

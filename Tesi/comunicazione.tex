@@ -1,0 +1,51 @@
+\section{Comunicazione}
+
+\'E necessario precisare che nel MAS, l'interpretazione dell'ambiente da parte di un agente si basa su concetti semantici che formano un'astrazione del mondo fisico in virtuale.
+Le rappresentazioni di questi stessi concetti nella GE spesso hanno un livello di astrazione diverso rispetto a ciò che è più adatto per gli agenti.
+Ad esempio, il concetto di "persona seduta su una sedia", associabile ad un belief del tipo \textit{"seduta(persona,sedia)"} di un agente,
+può essere rappresentato nella GE dalla posizione di un personaggio in prossimità di una sedia in combinazione con le posizioni di ciascun componente, formando una posizione seduta.
+
+\medskip
+
+\subsection{Protocollo messaggi} \label{protocollo_messaggi}
+
+Il protocollo di comunicazione prevede un solo messaggio per ogni interazione.
+Bisogna tenere presente che, se un messaggio viene inviato dal lato MAS sicuramente sarà un azione; se un messaggio viene inviato dal lato GE, sarà
+invece una percezione.
+
+\medskip
+
+Il messaggio è così strutturato:
+\begin{itemize}
+   \item \textbf{Sender}: indica il nome dell'entità (corpo o mente) che invia il messaggio;
+   \item \textbf{Receiver}: indica il nome dell'entità (corpo o mente) che deve ricevere il messaggio;
+   \item \textbf{Content}: contenuto principale del messaggio, corrisponde all'identificativo dell'azione o percezione inviata, ad esempio \textit{touched} e \textit{search};
+   \item \textbf{Params}: array di parametri associati alla percezione o azione. Data la diversa tipologia di linguaggi presenti nel sistema è stato deciso di supportare solo i tipi primitivi quali stringhe, numeri e booleani;
+   \item \textbf{TimeStats}: array ordinato di statistiche temporali.
+\end{itemize}
+
+La struttura del messaggio ha contribuito ad una facile associazione al formato JSON \cite{json} generato utilizzando le librerie GSON \cite{gson}, all'interno di Synapsis e JaCaMo, e Json.Net \cite{json_net}, all'interno di Unity, che permettono di serializzare e deserializzare una specifica classe a Json e viceversa.
+
+\lstinputlisting[label={messaggioJSON},caption={JSON di un generico messaggio},language=json]{code/Message.json}
+
+Il listato \ref{messaggioJSON} rappresenta un esempio di messaggio, in formato JSON, che mente e corpo si possono scambiare all'interno del sistema.
+
+\subsubsection{Interpretare i dati statistici}
+
+La separazione tra le diverse parti del sistema (Game Engine, Middleware e Sistema Multi-Agente) ha portato alla necessità di inserire delle statistiche temporali per venire a conoscenze dei tempi di trasferimento dei messaggi.
+
+\medskip
+
+Per interpretare i dati statistici è necessario conoscere la loro natura: è stato utilizzato il timestamp (in millisecondi) dal 1 Gennaio 1970 UTC\footnote{link al metodo \href{https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/System.html}{Java}. Per C\# è stato realizzato un metodo ad hoc che funziona allo stesso modo.} per segnare il momento esatto di invio/ricezione del messaggio.
+
+\medskip
+
+Dato, per esempio, il precedente array di tempistiche, è possibile calcolare i tempi in questa modalità:
+
+\begin{enumerate}
+    \item \textbf{Trasmissione da MAS/GE a Synapsis(attore)}: differenza tra il secondo ed il primo valore, quindi: \textit{1563478689310 - 1563478689301 = 9 mills};
+    \item \textbf{Trasmissione tra attori interni a Synapsis}: differenza tra il terzo ed il secondo valore, quindi: \textit{1563478689311 - 1563478689310 = 1 mills};
+    \item \textbf{Trasmissione da Synapis a MAS/GE}: differenza tra il quarto ed il terzo valore, quindi: \textit{1563478689320 - 1563478689311 = 9 mills}.
+\end{enumerate}
+
+Il tempo totale di trasmissione del messaggio è calcolabile sommando i risultati precedentemente ottenuti, in questo caso 19 mills.

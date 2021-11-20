@@ -1,0 +1,19 @@
+\chapter{Conclusioni e Sviluppi Futuri}
+
+Il sistema sviluppato rappresenta un'implementazione preliminare di integrazione tra MAS e GE, e sfruttando le potenzialità offerte da Unity, si ha la conferma, ancora una volta, di come le due tecnologie – quella dei Game Engine e quella dei MAS – si sposino bene insieme. L'obiettivo primario di migliorare lo stato dell'arte dell'integrazione tra GE e MAS è stato raggiunto, mettendo a disposizione del programmatore un middleware e librerie per Unity e JaCaMo con le quali è possibile realizzare scenari relativamente complessi. Rimangono, tuttavia, margini di miglioramento e ulteriori studi da compiere.
+
+\medskip
+
+Per quanto riguarda il sistema nella sua interezza sarebbe interessante inserire SpatialTuples come mezzo abilitante la coordinazione, già utilizzato nei lavoro \cite{amslaurea16100} ed utilizzare il Web Socket Secure (WSS)\footnote{connessione criptata attraverso TLS/SSL} per migliorare la sicurezza complessiva delle comunicazioni. Sempre dal punto di vista della comunicazione sarebbe da aggiungere la possibilità di inviare strutture complesse (oggetti) nei parametri dei messaggi scambiati.
+
+\medskip
+
+Per quanto riguarda il middleware sarebbe sicuramente utile la realizzazione di una interfaccia grafica nella quale visualizzare le varie statistiche di invio e ricezione messaggi (raccolta delle tempistiche già presente), le entità presenti collegate, quali sono le entità mock, al fine di avere un vero e proprio centro di controllo del middleware.
+
+\medskip 
+
+In merito alla diffusione del sistema si potrebbero realizzare nuove librerie per aumentare l'estensione a più GE e/o MAS, cosi da non renderelo ad uso esclusivo di Unity e JaCamo ma, ad esempio, anche per altre GE (Unreal Engine, GameMaker, CryEngine) ed altri Multi-Agent System. A tal proposito si dovrebbbe aggiornare la libreria per JaCaMo supportandola alla sua ultima versione \href{https://sourceforge.net/projects/jacamo/files/version-0/}{JaCaMo 0.8}. 
+
+\medskip 
+
+Un altro interessante spunto di riflessione sui possibili lavori futuri riguarda la distribuzione: tutte le parti che compongono il sistema offrono diverse modalità di eseguire gli applicativi su diversi dispositivi. A tal proposito, Unity offre nativamente il supporto al Multiplayer che potrebbe essere sfruttato per indagare più a fondo in questa direzione.
