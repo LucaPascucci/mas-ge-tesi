@@ -3,7 +3,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-    - 'v*-tesi' # Push events to matching v*, i.e. v1.0, v20.15.10
+    - 'v*-propedeutica' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
@@ -17,10 +17,10 @@ jobs:
         id: latex
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: tesi/tesi.tex
-          continue_on_error: true
+          root_file: attivita_propedeutica/propedeutica.tex
+          # continue_on_error: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: tesi.pdf
+          files: propedeutica.pdf
 
