@@ -19,6 +19,7 @@ jobs:
         with:
           root_file: tesi/tesi.tex
           continue_on_error: true
+          working_directory: tesi
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
