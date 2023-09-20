@@ -17,9 +17,9 @@ jobs:
         id: latex
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: tesi/tesi.tex
-          continue_on_error: true
           working_directory: tesi
+          root_file: tesi.tex
+          # continue_on_error: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
