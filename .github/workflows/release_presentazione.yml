@@ -17,7 +17,8 @@ jobs:
         id: latex
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: presentazione/presentazione.tex
+          working_directory: presentazione
+          root_file: presentazione.tex
           continue_on_error: true
       - name: Release
         uses: softprops/action-gh-release@v1

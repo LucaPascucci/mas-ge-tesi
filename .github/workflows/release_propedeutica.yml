@@ -17,8 +17,9 @@ jobs:
         id: latex
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: attivita_propedeutica/propedeutica.tex
-          # continue_on_error: true
+          working_directory: attivita_propedeutica
+          root_file: propedeutica.tex
+          continue_on_error: true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
