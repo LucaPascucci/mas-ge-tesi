@@ -23,5 +23,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: sistemi_autonomi.pdf
+          files: relazione_sistemi_autonomi/sistemi_autonomi.pdf
 
