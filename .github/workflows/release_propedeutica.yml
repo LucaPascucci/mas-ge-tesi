@@ -23,5 +23,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: propedeutica.pdf
+          files: attivita_propedeutica/propedeutica.pdf
 
